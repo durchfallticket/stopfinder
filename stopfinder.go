@@ -16,7 +16,7 @@ type Stopfinder interface {
   Find(name string) *[]Info
 }
 
-type DefaultStopFinder struct {
+type DefaultStopfinder struct {
   Set      *FuzzySet
   Stops    []Info
 }
@@ -30,8 +30,8 @@ func createNameSlice(stops *[]Info) []string {
   return parentNames
 }
 
-func NewStopfinder(blob string) (*DefaultStopFinder, error) {
-  var stopfinder DefaultStopFinder
+func NewStopfinder(blob string) (*DefaultStopfinder, error) {
+  var stopfinder DefaultStopfinder
 
   data, err := os.ReadFile(blob)
   if err != nil {
@@ -49,7 +49,7 @@ func NewStopfinder(blob string) (*DefaultStopFinder, error) {
   return &stopfinder, nil
 }
 
-func (d *DefaultStopFinder) Find(name string) *[]Info {
+func (d *DefaultStopfinder) Find(name string) *[]Info {
   var stops []Info
 
   fuzzyResults := d.Set.Get(name)
