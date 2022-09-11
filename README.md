@@ -1,2 +1,1 @@
-# stopfinder
-An EFA stop finder using an offline data blob instead of third-party APIs
+# Golang Module that implements fuzzy search on an offline public transport station data blob
