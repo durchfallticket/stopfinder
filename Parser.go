@@ -2,6 +2,7 @@ package stopfinder
 
 import (
 	"strings"
+  "math"
 )
 
 func ParseBytesFormat5(bArr *[]byte) []Info {
@@ -16,7 +17,7 @@ func ParseBytesFormat5(bArr *[]byte) []Info {
 			omc := GetInt(&br)
 			coord := NewCoordinate(float64(GetInt(&br))/100.0, float64(GetInt(&br))/100.0)
 			netLength := GetByte(&br)
-			nets := make([]Net, netLength-1)
+			nets := make([]Net, int(math.Max(0, float64(netLength - 1))))
 			for netIndex := 1; netIndex <= netLength; netIndex++ {
 				netName := strings.ToLower(GetString(&br, 3))
 				zoneLength := GetByte(&br)
