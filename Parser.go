@@ -16,15 +16,15 @@ func ParseBytesFormat5(bArr *[]byte) []Info {
 			omc := GetInt(&br)
 			coord := NewCoordinate(float64(GetInt(&br))/100.0, float64(GetInt(&br))/100.0)
 			netLength := GetByte(&br)
-			nets := make([]Net, 0)
-			for netIndex := 1; netIndex <= netLength; netIndex++ {
+			nets := make([]Net, netLength)
+			for netIndex, _ := range nets {
 				netName := strings.ToLower(GetString(&br, 3))
 				zoneLength := GetByte(&br)
-				zones := make([]int, 0)
-				for zoneIndex := 1; zoneIndex <= zoneLength; zoneIndex++ {
-					zones = append(zones, GetInt(&br))
+				zones := make([]int, zoneLength)
+				for zoneIndex, _ := range zones {
+					zones[zoneIndex] = GetInt(&br)
 				}
-				nets = append(nets, Net{Name: netName, Zones: zones})
+				nets[netIndex] = Net{Name: netName, Zones: zones}
 			}
 			length := int(GetShort(&br))
 			for index := 1; index <= length; index++ {
